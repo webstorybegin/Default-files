@@ -1,7 +1,5 @@
 
 // <SLIDER ====================================================================================
-
-
 $('.portfolio__slider').slick({
   arrows: false,
   slidesToShow: 1,
@@ -26,28 +24,29 @@ $('.portfolio__slider').slick({
 
 
 // <BURGER ====================================================================================
-$('.burger').on('click', function () {
-  $(this).toggleClass('burger__active')
-  $('body').toggleClass('lock')
-  $('.burger__menu').toggleClass('burger__menu-active')
-})
-
-let burgerMenu = $('.burger__menu, .burger')
+let burger = document.querySelector('.burger')
+let burgerMenu = document.querySelector('.burger__menu')
+let logo = document.querySelector('.header__nav_logo')
+let burgerMenuClickOut = $('.burger__menu, .burger')
 let burgerMenuActive = $('.burger__menu-active')
 
-$(document).on('mouseup', function (e) {
-  if (!burgerMenu.is(e.target) && burgerMenu.has(e.target).length === 0 &&
+burger.addEventListener('click', function () {
+  burger.classList.toggle('burger__active')
+  burgerMenu.classList.toggle('burger__menu-active')
+  document.body.classList.toggle('lock')
+})
+document.addEventListener('click', function (e) {
+  if (!burgerMenuClickOut.is(e.target) && burgerMenuClickOut.has(e.target).length === 0 &&
     !burgerMenuActive.is(e.target) && burgerMenuActive.has(e.target).length === 0) {
-    $('body').removeClass('lock')
-    $('.burger__menu').removeClass('burger__menu-active')
-    $('.burger').removeClass('burger__active')
-    $('.header__nav_logo').addClass('animateLogo')
+    document.body.classList.remove('lock')
+    burger.classList.remove('burger__active')
+    burgerMenu.classList.remove('burger__menu-active')
+    logo.classList.add('animateLogo')
     setTimeout(function () {
-      $('.header__nav_logo').removeClass('animateLogo')
+      logo.classList.remove('animateLogo')
     }, 700)
   }
 })
-
 // </BURGER ===================================================================================
 
 
